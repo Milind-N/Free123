@@ -18,6 +18,12 @@ describe('StockExchangeInfo', () => {
   it('renders a table', () => {
     const table = element.shadowRoot.querySelector('table');
     expect(table).to.exist;
+
+    const tr = element.shadowRoot.querySelector('tr');
+    expect(tr).to.exist;
+
+    const th = element.shadowRoot.querySelector('th');
+    expect(th).to.exist;
   });
 
   it('passes the a11y audit', async () => {

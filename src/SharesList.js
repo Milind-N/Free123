@@ -7,7 +7,9 @@ export class SharesList extends LitElement {
   static get properties() {
     return {
       sharesInfo: { type: Array },
-      errorMsg: { type: String }
+      errorMsg: { type: String },
+      showDetails: { type: Boolean },
+      instrument: { type: String },
     };
   }
 
@@ -15,6 +17,8 @@ export class SharesList extends LitElement {
     super()
     this.sharesInfo = []
     this.errorMsg = ''
+    this.showDetails = true
+    this.instrument = ''
   }
 
   static get styles() {
@@ -36,12 +40,19 @@ export class SharesList extends LitElement {
     });
   }
 
+  _getStockInfo(display, instrument) {
+    this.showDetails = display
+    this.instrument = instrument
+  }
+
   render() {
     const response = getStockList(this.sharesInfo);
     return html` ${this.errorMsg === '' 
       ? html`
         <div>
-          ${this._showStockList(response)}
+          ${this.showDetails 
+            ? this._showStockList(response)
+            : this._showStockDetails(response, this.instrument) }
         </div>
         `
       : html`<div>${constants.ERROR_MSG}</div>` }
@@ -61,7 +72,9 @@ export class SharesList extends LitElement {
         </tr>
         ${response.map(item => html`
         <tr>
-          <td class="align-left">${item.name}</td>
+          <td class="align-left">
+            <a href='#' @click=${() => this._getStockInfo(false, item.name)}>${item.name}</a>
+          </td>
           <td>${item.highPrice}</td>
           <td>${item.lowPrice}</td>
           <td class="${item.className}">${item.currentPrice}</td>
@@ -77,6 +90,35 @@ export class SharesList extends LitElement {
     return html`
       <div>
         <button @click=${() => this._getStockApiData()}>Refresh Data</button>
+      </div>
+    `;
+  }
+
+  _showStockDetails(response, instrument) {
+    const stockFound = response.find(index => index.name === instrument)
+
+    return html`
+      <div>
+        <h1>${stockFound.name}</h1>
+        <button @click=${() => this._getStockInfo(true, instrument)}>Stock List</button>
+        <table class="table">
+          <tr>
+            <th>${constants.STOCK_SYMBOL}</th>
+            <th>${constants.STOCK_CURRENT_PRICE}</th>
+            <th>${constants.STOCK_OPEN_PRICE}</th>
+            <th>${constants.STOCK_CLOSE_PRICE}</th>
+            <th>${constants.STOCK_LOW_PRICE}</th>
+            <th>${constants.STOCK_HIGH_PRICE}</th>
+          </tr>
+          <tr>
+            <td>${stockFound.symbol}</td>
+            <td>${stockFound.currentPrice}</td>
+            <td>${stockFound.openPrice}</td>
+            <td>${stockFound.closePrice}</td>
+            <td>${stockFound.lowPrice}</td>
+            <td>${stockFound.highPrice}</td>
+          </tr>
+          </table>
       </div>
     `;
   }
