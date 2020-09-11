@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { html, fixture, expect, waitUntil } from '@open-wc/testing';
 
 import '../src/indices-list.js';
 
@@ -10,9 +10,11 @@ describe('StockExchangeInfo', () => {
     `);
   });
 
-  it('renders a ul', () => {
-    const ul = element.shadowRoot.querySelector('ul');
-    expect(ul).to.exist;
+
+
+  xit('renders a div', () => {
+    const div = element.shadowRoot.querySelector('div');
+    expect(div).to.exist;
   });
 
   it('passes the a11y audit', async () => {
