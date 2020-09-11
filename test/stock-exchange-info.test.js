@@ -1,6 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../src/stock-exchange-info.js';
+import { constants } from '../constants';
 
 describe('StockExchangeInfo', () => {
   let element;
@@ -13,7 +14,7 @@ describe('StockExchangeInfo', () => {
   it('renders a h1', () => {
     const h1 = element.shadowRoot.querySelector('h1');
     expect(h1).to.exist;
-    expect(h1.textContent).to.equal('Stock Market Information');
+    expect(h1.textContent).to.equal(constants.APP_NAME);
   });
 
   it('passes the a11y audit', async () => {
