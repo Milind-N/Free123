@@ -3,7 +3,6 @@ import { constants } from '../constants';
 import { style } from '../style/shares-list-styles'
 import { getStockList } from './helper'
 
-
 export class SharesList extends LitElement {
   static get properties() {
     return {
@@ -23,6 +22,10 @@ export class SharesList extends LitElement {
   }
 
   firstUpdated() {
+    this._getStockApiData()
+  }
+
+  _getStockApiData() {
     fetch(constants.STOCK_LIST_API)
     .then((shareList) => shareList.json())
     .then((shareList) => {
@@ -47,6 +50,7 @@ export class SharesList extends LitElement {
 
   _showStockList(response) {
     return html`
+      ${this._getPollButton()}
       <table class="table">
         <tr>
           <th>${constants.STOCK_NAME}</th>
@@ -61,6 +65,15 @@ export class SharesList extends LitElement {
         </tr>
         `)}
       </table>
+      ${this._getPollButton()}
     `
+  }
+
+  _getPollButton() {
+    return html`
+      <div>
+        <button @click=${() => this._getStockApiData()}>Refresh Data</button>
+      </div>
+    `;
   }
 }

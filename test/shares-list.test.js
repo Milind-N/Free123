@@ -10,9 +10,14 @@ describe('StockExchangeInfo', () => {
     `);
   });
 
-  xit('renders a ul', () => {
-    const ul = element.shadowRoot.querySelector('ul');
-    expect(ul).to.exist;
+  it('renders a button', () => {
+    const button = element.shadowRoot.querySelector('button');
+    expect(button).to.exist;
+  });
+
+  it('renders a table', () => {
+    const table = element.shadowRoot.querySelector('table');
+    expect(table).to.exist;
   });
 
   it('passes the a11y audit', async () => {
