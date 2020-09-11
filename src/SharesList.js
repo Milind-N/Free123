@@ -56,12 +56,16 @@ export class SharesList extends LitElement {
           <th>${constants.STOCK_NAME}</th>
           <th>${constants.STOCK_HIGH_PRICE}</th>
           <th>${constants.STOCK_LOW_PRICE}</th>
+          <th>${constants.STOCK_LAST_PRICE}</th>
+          <th>${constants.CHANGE_PRICE}</th>
         </tr>
         ${response.map(item => html`
         <tr>
           <td class="align-left">${item.name}</td>
           <td>${item.highPrice}</td>
           <td>${item.lowPrice}</td>
+          <td class="${item.className}">${item.currentPrice}</td>
+          <td class="${item.className}">${item.change}</td>
         </tr>
         `)}
       </table>
