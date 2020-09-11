@@ -32,7 +32,7 @@ export class IndicesList extends LitElement {
     const { response } = this;
     return html` ${this.errorMsg === '' 
       ? html`<index-card .indices=${this.response}></index-card>`
-      : html`<div>An error occurred while fetching the data</div>` }
+      : html`<div>${constants.ERROR_MSG}</div>` }
       `
   }
 }

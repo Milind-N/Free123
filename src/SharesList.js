@@ -36,7 +36,7 @@ export class SharesList extends LitElement {
             `)}
           </ul>
         `
-      : html`<div>An error occurred while fetching the data</div>` }
+      : html`<div>${constants.ERROR_MSG}</div>` }
       `;
   }
 }
