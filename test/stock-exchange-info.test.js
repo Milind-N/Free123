@@ -17,6 +17,11 @@ describe('StockExchangeInfo', () => {
     expect(h1.textContent).to.equal(constants.APP_NAME);
   });
 
+  it('renders a indices-list', () => {
+    const indicesList = element.shadowRoot.querySelector('indices-list');
+    expect(indicesList).to.exist;
+  });
+
   it('passes the a11y audit', async () => {
     await expect(element).shadowDom.to.be.accessible();
   });

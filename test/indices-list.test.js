@@ -1,0 +1,21 @@
+import { html, fixture, expect } from '@open-wc/testing';
+
+import '../src/indices-list.js';
+
+describe('StockExchangeInfo', () => {
+  let element;
+  beforeEach(async () => {
+    element = await fixture(html`
+      <indices-list></indices-list>
+    `);
+  });
+
+  it('renders a ul', () => {
+    const ul = element.shadowRoot.querySelector('ul');
+    expect(ul).to.exist;
+  });
+
+  it('passes the a11y audit', async () => {
+    await expect(element).shadowDom.to.be.accessible();
+  });
+});

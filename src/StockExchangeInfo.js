@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 import { constants } from '../constants';
+import './indices-list'
 
 export class StockExchangeInfo extends LitElement {
   static get styles() {
@@ -28,6 +29,10 @@ export class StockExchangeInfo extends LitElement {
     return html`
       <div id="header">
         <h1>${constants.APP_NAME}</h1>
+      </div>
+
+      <div id="content">
+        <indices-list></indices-list>
       </div>
     `;
   }
