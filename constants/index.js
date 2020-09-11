@@ -6,5 +6,8 @@ export const constants = {
   STOCK_OPEN_PRICE: 'Open Price',
   STOCK_CLOSE_PRICE: 'Close Price',
   CHANGE_PRICE: 'Change',
-  ERROR_MSG: 'An error occurred while fetching the data'
+  ERROR_MSG: 'An error occurred while fetching the data',
+  STOCK_NAME: 'Name',
+  STOCK_HIGH_PRICE: 'High Price',
+  STOCK_LOW_PRICE: 'Low Price',
 }
